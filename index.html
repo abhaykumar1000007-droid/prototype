@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobGuard AI — Verify a job offer before it costs you</title>
+<meta name="description" content="Paste a job or internship posting and get an instant risk verdict, evidence checklist, and safety recommendations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <span class="brand-mark">JG</span>
+      <span class="brand-name">JOBGUARD <em>AI</em></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#analyzer">Open a case</a>
+      <a href="#how">Method</a>
+      <a href="#log">Case log</a>
+    </nav>
+    <a href="#analyzer" class="btn btn-ghost nav-cta">Check a listing →</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="dot"></span> Internship &amp; job-offer verification</p>
+        <h1 class="redact-line">
+          <span class="redact" data-final="Before you pay a">████████████</span><br>
+          <span class="redact" data-final="rupee, share an">███████████</span><br>
+          <span class="redact" data-final="Aadhaar, or reply —">██████████████</span><br>
+          <span class="glow">know what you're dealing with.</span>
+        </h1>
+        <p class="hero-sub">
+          Paste the posting, the offer letter, or a screenshot. JobGuard AI opens a case,
+          runs it against known scam patterns, and hands back a stamped verdict — in seconds,
+          not after you've paid a "registration fee."
+        </p>
+        <div class="hero-actions">
+          <a href="#analyzer" class="btn btn-primary">Open a case file</a>
+          <a href="#how" class="btn btn-text">See how scoring works ↓</a>
+        </div>
+        <p class="hero-trust">No sign-up. Nothing you paste leaves your browser.</p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="stamp-card demo-card">
+          <div class="case-id">CASE №&nbsp;<span id="demoCaseId">04471</span></div>
+          <div class="case-row"><span>Role</span><span>"Data Entry — Work From Home"</span></div>
+          <div class="case-row"><span>Pay offered</span><span>₹45,000 / week</span></div>
+          <div class="case-row"><span>Contact</span><span>WhatsApp only</span></div>
+          <div class="stamp stamp-red demo-stamp">HIGH<br>RISK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="how">
+    <div class="wrap">
+      <p class="section-eyebrow">Method</p>
+      <h2>Three steps. Same process every time.</h2>
+      <div class="evidence-steps">
+        <div class="ev-step">
+          <span class="ev-num">01</span>
+          <h3>Submit the evidence</h3>
+          <p>Paste the job description, drop in a screenshot or PDF, or hand over the posting URL. Whatever you were sent.</p>
+        </div>
+        <div class="ev-step">
+          <span class="ev-num">02</span>
+          <h3>Run the pattern check</h3>
+          <p>The engine checks the text against a growing list of red flags seen in real internship and job scams — fee requests, urgency language, mismatched pay, throwaway contact channels.</p>
+        </div>
+        <div class="ev-step">
+          <span class="ev-num">03</span>
+          <h3>Get a stamped verdict</h3>
+          <p>A risk score, a plain-English breakdown of what was found, and what to do next — reply, verify further, or walk away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYZER -->
+  <section id="analyzer" class="analyzer">
+    <div class="wrap">
+      <p class="section-eyebrow">Open a case</p>
+      <h2>Submit a posting for review</h2>
+
+      <div class="analyzer-grid">
+        <div class="intake-panel">
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="text" role="tab">Paste text</button>
+            <button class="tab" data-tab="file" role="tab">Upload screenshot / PDF</button>
+            <button class="tab" data-tab="url" role="tab">Job URL</button>
+          </div>
+
+          <div class="tab-panel active" data-panel="text">
+            <label for="jobText" class="field-label">Job or internship description</label>
+            <textarea id="jobText" rows="10" placeholder="Paste the full message or posting here — the more context, the better the read. Include salary, contact details, and any instructions given."></textarea>
+          </div>
+
+          <div class="tab-panel" data-panel="file">
+            <label class="field-label">Screenshot or PDF of the offer</label>
+            <div class="dropzone" id="dropzone">
+              <input type="file" id="fileInput" accept="image/*,.pdf" hidden>
+              <p class="dz-title">Drop a file, or click to browse</p>
+              <p class="dz-sub">PNG, JPG, or PDF. Used only to confirm what you received — for the fullest read, paste the visible text on the "Paste text" tab too.</p>
+              <p class="dz-file" id="dzFileName"></p>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="url">
+            <label for="jobUrl" class="field-label">Link to the posting</label>
+            <input type="url" id="jobUrl" placeholder="https://...">
+            <p class="field-hint">We'll factor the domain into the read. For a full scan, paste the posting text too.</p>
+          </div>
+
+          <button id="analyzeBtn" class="btn btn-primary btn-block">
+            <span class="btn-label">Run the check</span>
+          </button>
+          <p class="intake-note">This runs entirely in your browser. Nothing is uploaded to a server.</p>
+        </div>
+
+        <div class="verdict-panel" id="verdictPanel">
+          <div class="verdict-empty" id="verdictEmpty">
+            <div class="empty-badge">?</div>
+            <p>No case open yet.<br>Submit a posting to get a verdict.</p>
+          </div>
+
+          <div class="verdict-result" id="verdictResult" hidden>
+            <div class="case-file">
+              <div class="case-file-top">
+                <span class="case-id">CASE №&nbsp;<span id="resultCaseId"></span></span>
+                <span class="case-date" id="resultDate"></span>
+              </div>
+
+              <div class="stamp-wrap">
+                <div class="stamp" id="resultStamp"></div>
+              </div>
+
+              <div class="score-row">
+                <div class="score-num" id="scoreNum">0</div>
+                <div class="score-meta">
+                  <span class="score-label">Risk score out of 100</span>
+                  <div class="score-bar"><div class="score-bar-fill" id="scoreBarFill"></div></div>
+                </div>
+              </div>
+
+              <div class="evidence-list" id="evidenceList"></div>
+
+              <div class="recommend-box" id="recommendBox">
+                <h4>Recommended next step</h4>
+                <p id="recommendText"></p>
+              </div>
+
+              <button class="btn btn-ghost btn-block" id="saveCaseBtn">Save to case log</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE LOG -->
+  <section id="log" class="log">
+    <div class="wrap">
+      <p class="section-eyebrow">Case log</p>
+      <h2>Your saved checks</h2>
+      <p class="log-sub">Stored only on this device.</p>
+      <div id="logList" class="log-list">
+        <p class="log-empty" id="logEmpty">No cases saved yet — verdicts you save will show up here.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="brand">
+      <span class="brand-mark">JG</span>
+      <span class="brand-name">JOBGUARD <em>AI</em></span>
+    </div>
+    <p class="footer-note">A screening aid, not a legal verdict. When in doubt, verify with the company directly through channels you find yourself — never ones given to you in the offer.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
